@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CPS3525 PROJECT 1</title>
+</head>
+<body>
+    <form action="../cgi-bin/xdu_Project1" method="GET">
+        User name:
+        <input type = "text" name = "name" required>
+        Gender:
+        <input type = "radio" name = "gender" value = "M" required>M
+        <input type = "radio" name = "gender" value = "F" >F <br>
+        Age: <input type = "text" name = "age" required>
+        Birthday: <input type = "date" name = "birthday" required> <br>
+        Taken courses:
+        <input type = "checkbox" name = "CPS1231" value = "ON" > CPS1231
+        <input type = "checkbox" name = "CPS2231" value = "ON" > CPS2231
+        <input type = "checkbox" name = "CPS2232" value = "ON" > CPS2232 
+	<input type = "checkbox" name = "CPS3250" value = "ON" > CPS3250 <br>
+        Select township
+        <select name = "town" required>
+            <option value = "Union">Union</option>
+            <option value = "Newark">Newark</option>
+            <option value = "Edison">Edison</option>
+            <option value = "Harrison">Harrison</option>
+        </select> <br>
+        Paste a string contains upto 40 letters A-Z, a-z: <br>
+        <input type = "text" name = "mydata" maxlength="40" required>
+        <input type = "submit" value = "Submit">
+
+    </form>
+</body>
+</html>
