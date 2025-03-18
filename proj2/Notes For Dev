@@ -1,0 +1,17 @@
+Browser (GET)
+  ↓
+main.cpp (read input)
+  ↓
+HandleInput.cpp (analysis and validate)
+  ↓
+ProcessObject.cpp (recursion/ including flood fill)
+  ↓
+OtherInfo.cpp (generate system information)
+  ↓
+OutputHTML.cpp (output HTML)
+  ↓
+main.cpp ( CGI response)
+  ↓
+Browser (result)
+  ↓
+outputfile through href
