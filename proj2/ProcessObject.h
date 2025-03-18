@@ -3,13 +3,15 @@
 #define PROCESSOBJECT_H
 
 struct Object {
-	double centerX;
-	double centerY;
+	float centerX;
+	float centerY;
+	int startX;
+	int startY;
 	int size;
 	int objectId;
 };
 
-void ProcessObject(int Widthm, int Height, char** arr);
+void ProcessObject(const int Width, const int Height, char** arr);
 
 void visit(const int Width, const int Height, char **arr, int x, int y, const char P, Object &obj);
 

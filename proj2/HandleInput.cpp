@@ -51,3 +51,21 @@ vector<vector<char>> handleInput(const string& mydata, int &height, int &width) 
 	}
 	return matrix;
 }
+
+char** convertToCharArray(const vector<vector<char>>& matrix) {
+	if (matrix.empty()) return nullptr;
+	int height = matrix.size();
+	int width = matrix[0].size();
+
+	char** arr = new char*[height];
+	for (int i = 0; i < height; ++i) {
+		if (matrix[i].size() != width) {
+			for (int j = 0; j < i; ++j) delete[] arr[j];
+			delete[] arr;
+			throw std::runtime_error("Inconsistent row width");
+		}
+		arr[i] = new char[width];
+		std::copy(matrix[i].begin(), matrix[i].end(), arr[i]);
+	}
+	return arr;
+}
