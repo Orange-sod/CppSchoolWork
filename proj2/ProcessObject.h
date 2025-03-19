@@ -11,7 +11,8 @@ struct Object {
 	int objectId;
 };
 
-void ProcessObject(const int Width, const int Height, char** arr);
+
+string ProcessObject(const int Width, const int Height, char **arr);
 
 void visit(const int Width, const int Height, char **arr, int x, int y, const char P, Object &obj);
 

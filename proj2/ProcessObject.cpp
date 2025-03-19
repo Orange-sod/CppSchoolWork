@@ -1,11 +1,14 @@
 #include "ProcessObject.h"
+
+#include <iomanip>
 #include <vector>
 #include <iostream>
 
+using namespace std;
 void visit(const int Height, const int Width, char **arr, int x, int y, const char P, Object &obj) {
 	//basecase: out of bounds
 	if (x<0 || x>=Width || y<0 || y>=Height) return;
-	//basecase: not a object
+	//basecase: not an object
 	if (arr[y][x]!= 'T') return;
 
 	arr[y][x] = P;
@@ -19,10 +22,10 @@ void visit(const int Height, const int Width, char **arr, int x, int y, const ch
 	visit(Height, Width, arr, x, y - 1, P, obj);	 //up visit
 }
 
-void ProcessObject(const int Height, const int Width, char** arr) {
+string ProcessObject(const int Height, const int Width, char **arr, int& objNum) {
 
 	//a object vector to store objects
-	std::vector<Object> objects;
+	vector<Object> objects;
 	int objectId = 1;
 
 	//iterate the matrix, if found T then start visit
@@ -52,7 +55,20 @@ void ProcessObject(const int Height, const int Width, char** arr) {
 		}
 	}
 
+	objNum = objects.size();
 
+	string ObjectInfo;
+	for (Object obj : objects) {
+		ostringstream oss;
+		oss << fixed << setprecision(3); // three decimal place
+		oss << "Object id " << obj.objectId <<
+			   " starts at (" << obj.startX << "," << obj.startY << "), " <<
+			   "size: " << obj.size << " chars, " <<
+			   "center at (" << obj.centerX << "," << obj.centerY << ")\n";
+		ObjectInfo.append(oss.str());
+	}
+
+	return ObjectInfo;
 }
 
 

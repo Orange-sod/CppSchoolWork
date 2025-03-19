@@ -1,25 +1,21 @@
 #include <cstring>
 #include "HandleInput.cpp"
 #include "ProcessObject.cpp"
+#include "OtherInfo.cpp"
 
 int main() {
 	try {
 		int height = 0;
 		int width = 0;
+		int objNum = 0;
 		string data = "6,7\nBBBBBBB\nBTTBBTB\nBBBBBBB\nBBBTBBB\nBTTTBBB\nBBBBBBB";
 		vector<vector<char>> testMatrix = handleInput(data,height,width);
-		for (vector<char> c : testMatrix) {
-			for (char d: c) {
-				cout << d;
-			}
-			cout << endl;
-		}
-		cout << "Height is " << height << endl;
-		cout << "Width is " << width << endl;
-
 		char** arr = convertToCharArray(testMatrix);
+		cout << data << endl;
+		cout << ProcessObject(height,width,arr, objNum) << endl;
+		cout << objNum << endl;
 
-		ProcessObject(height,width,arr);
+
 
 		if (arr) {
 			for (int i = 0; i < height; ++i) {
@@ -27,7 +23,6 @@ int main() {
 			}
 			delete[] arr;
 		}
-
 
 	}catch (runtime_error &e) {
 		cerr << e.what() << endl;

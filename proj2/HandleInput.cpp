@@ -38,6 +38,7 @@ vector<vector<char>> handleInput(const string& mydata, int &height, int &width) 
 				throw runtime_error("Num of Row not Match!");
 			}
 
+			//situation that a row has less than expected elements.
 			if (strlen(line) != width) {
 				throw runtime_error("Incorrect Width at some row!");
 			}
@@ -62,10 +63,10 @@ char** convertToCharArray(const vector<vector<char>>& matrix) {
 		if (matrix[i].size() != width) {
 			for (int j = 0; j < i; ++j) delete[] arr[j];
 			delete[] arr;
-			throw std::runtime_error("Inconsistent row width");
+			throw runtime_error("Inconsistent row width");
 		}
 		arr[i] = new char[width];
-		std::copy(matrix[i].begin(), matrix[i].end(), arr[i]);
+		copy(matrix[i].begin(), matrix[i].end(), arr[i]);
 	}
 	return arr;
 }

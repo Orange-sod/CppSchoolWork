@@ -15,10 +15,12 @@ int main() {
     cout << "Content-type:text/html\r\n\r\n";
     cout << "<html>\n";
     cout << "<head>\n";
-    cout << "<title>CPS 3525 web form test</title>\n";
+    cout << "<title>CPS 3525 Return Web For Project 2</title>\n";
     cout << "</head>\n";
     cout << "<body>\n";
 
+    string firstObj = cgi(firstObject);
+    string secondObj = cgi(secondObject);
 
     fstream outputFile;
 
