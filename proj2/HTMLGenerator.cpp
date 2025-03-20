@@ -1,12 +1,12 @@
 #include <string>
+#include <stdexcept>
 #include <iostream>
 #include <fstream>
 #include "HTMLGenerator.h"
 
 using namespace std;
 void GenerateHeaders(const string& outputUrl){//output first, use ios::out
-	cout << outputUrl << endl;
-	fstream outputFile(outputUrl,ios::out);
+	ofstream outputFile(outputUrl,ios::out);
 	if (!outputFile.is_open()) {
 		throw runtime_error("Error opening output file at Headers");
 	}
@@ -16,11 +16,10 @@ void GenerateHeaders(const string& outputUrl){//output first, use ios::out
 	outputFile << "</head>\n";
 	outputFile << "<body>\n";
 	outputFile << "<h2>CPS 3525 Project2 Output File Xize Du</h2>\n";
-	cout << "okay here 1 ";
 	outputFile.close();
 }
 void GenerateSystemInfo(const string& outputUrl, const string& date, const string& IP, const string& Agent) {
-	fstream outputFile(outputUrl,ios::app);
+	ofstream outputFile(outputUrl,ios::app);
 	if (!outputFile.is_open()) {
 		throw runtime_error("Error opening output file at System Info");
 	}
@@ -34,7 +33,7 @@ void GenerateSystemInfo(const string& outputUrl, const string& date, const strin
 void GenerateOutput(const string& outputUrl,
 					const int& firstCount, const int& secondCount,
 					const string& firstMsg, const string& secondMsg) {
-	fstream outputFile(outputUrl,ios::app);
+	ofstream outputFile(outputUrl,ios::app);
 	if (!outputFile.is_open()) {
 		throw runtime_error("Error opening output file at System Info");
 	}
@@ -52,7 +51,7 @@ void GenerateOutput(const string& outputUrl,
 }
 
 void GenerateFooters(const string& outputUrl, const int& firstCount, const int& secondCount) {
-	fstream outputFile(outputUrl,ios::app);
+	ofstream outputFile(outputUrl,ios::app);
 	if (!outputFile.is_open()) {
 		throw runtime_error("Error opening output file at System Info");
 	}

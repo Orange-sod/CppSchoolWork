@@ -1,4 +1,6 @@
 #include <cstring>
+#include <algorithm>
+#include <stdexcept>
 #include <iostream>
 #include "HandleInput.h"
 #include "ProcessObject.h"
@@ -13,7 +15,7 @@ using namespace std;
 using namespace cgicc;
 
 int main() {
-    string Addr = "/home/student/xdu/public_html/output/output.html";
+    string Addr = "../output/output.html";
     Cgicc cgi;
     cout << "Content-type:text/html\r\n\r\n";
     cout << "<html>\n";
@@ -22,8 +24,12 @@ int main() {
     cout << "</head>\n";
     cout << "<body>\n";
 
-    string firstObj = cgi(firstObject);
-    string secondObj = cgi(secondObject);
+    string firstObj = cgi("firstObject");
+    string secondObj = cgi("secondObject");
+    
+    firstObj.erase(std::remove(firstObj.begin(), firstObj.end(), '\r'), firstObj.end());
+    secondObj.erase(std::remove(secondObj.begin(), secondObj.end(), '\r'), secondObj.end());
+    
 
     int height1 = 0;
     int width1 = 0;
@@ -34,7 +40,7 @@ int main() {
     int width2 = 0;
     int objNum2 = 0;
     string msg2;
-
+   
     string Time = getCurrentDateTime();
     string ip = getUserIP();
     string agent = getUserAgent();
@@ -78,7 +84,7 @@ int main() {
     cout << "Process the two textareas and saved successfully\n";
 
     try {
-        int chmodResult = system(("chmod 777 " + Addr).c_str());
+        int chmodResult = system("chmod 777 /home/student/xdu/public_html/output/output.html");
         if (chmodResult != 0) {
             throw runtime_error("Failed to change file permissions.");
         }
@@ -89,7 +95,7 @@ int main() {
     }
 
     cout << "You can see the output file and message at";
-    cout << "<a href = /home/student/xdu/public_html/output/output.html> here </a>\n";
+    cout << "<a href = https://obi.kean.edu/~xdu@kean.edu/output/output.html> here </a>\n";
     cout << "</body>\n";
 }
 

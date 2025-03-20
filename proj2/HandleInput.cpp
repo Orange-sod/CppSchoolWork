@@ -1,4 +1,5 @@
 #include "HandleInput.h"
+#include <stdexcept>
 #include <cstring>
 #include <iostream>
 
