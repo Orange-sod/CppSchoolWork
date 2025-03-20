@@ -1,6 +1,7 @@
 
 #ifndef PROCESSOBJECT_H
 #define PROCESSOBJECT_H
+#include <string>
 
 struct Object {
 	float centerX;
@@ -12,7 +13,7 @@ struct Object {
 };
 
 
-string ProcessObject(const int Width, const int Height, char **arr);
+std::string ProcessObject(const int Height, const int Width, char **arr, int& objNum);
 
 void visit(const int Width, const int Height, char **arr, int x, int y, const char P, Object &obj);
 

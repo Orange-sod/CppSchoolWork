@@ -1,5 +1,5 @@
 #include "ProcessObject.h"
-
+#include <sstream>
 #include <iomanip>
 #include <vector>
 #include <iostream>
@@ -24,9 +24,25 @@ void visit(const int Height, const int Width, char **arr, int x, int y, const ch
 
 string ProcessObject(const int Height, const int Width, char **arr, int& objNum) {
 
-	//a object vector to store objects
+	//an object vector to store objects
 	vector<Object> objects;
 	int objectId = 1;
+
+	//this is for output, I want to generate a integrated string for <pre> output because it easier
+	string ObjectInfo;
+
+	//append the height and width to the Info
+	ObjectInfo.append("height: " + to_string(Height) + ", width: " + to_string(Width) + "\n");
+
+	//append the original matrix(with T) to the Info
+	for (int y = 0; y < Height; y++) {
+		for (int x = 0; x < Width; x++) {
+			ObjectInfo.push_back(arr[y][x]);
+		}
+		ObjectInfo.push_back('\n');
+	}
+
+	ObjectInfo.append("\n");
 
 	//iterate the matrix, if found T then start visit
 	for (int y = 0; y < Height; y++) {
@@ -57,7 +73,7 @@ string ProcessObject(const int Height, const int Width, char **arr, int& objNum)
 
 	objNum = objects.size();
 
-	string ObjectInfo;
+	//append each object's data to the info
 	for (Object obj : objects) {
 		ostringstream oss;
 		oss << fixed << setprecision(3); // three decimal place
@@ -66,6 +82,19 @@ string ProcessObject(const int Height, const int Width, char **arr, int& objNum)
 			   "size: " << obj.size << " chars, " <<
 			   "center at (" << obj.centerX << "," << obj.centerY << ")\n";
 		ObjectInfo.append(oss.str());
+	}
+
+	//append the number of objects to the info
+	ObjectInfo.append("Total number of objects: " + to_string(objNum) + "\n");
+
+	ObjectInfo.append("\n");
+
+	//append the processed matrix(with objectIDs) to the info
+	for (int y = 0; y < Height; y++) {
+		for (int x = 0; x < Width; x++) {
+			ObjectInfo.push_back(arr[y][x]);
+		}
+		ObjectInfo.push_back('\n');
 	}
 
 	return ObjectInfo;
